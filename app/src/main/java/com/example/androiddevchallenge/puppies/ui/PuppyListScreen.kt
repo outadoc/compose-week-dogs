@@ -33,7 +33,7 @@ fun PuppyListScreen(onPuppySelected: (PuppyBreed) -> Unit) {
         TopAppBar(
             title = {
                 Text(
-                    text = "Puppy Mill",
+                    text = "Puppy Adoption",
                     color = MaterialTheme.colors.onPrimary
                 )
             },
@@ -174,9 +174,9 @@ fun PuppyBreedListItem(
                     style = MaterialTheme.typography.h6,
                     maxLines = 2
                 )
-                puppy.breedGroup?.let {
+                if (!puppy.breedGroup.isNullOrBlank())  {
                     Text(
-                        it,
+                        puppy.breedGroup,
                         style = MaterialTheme.typography.body2,
                         maxLines = 1
                     )

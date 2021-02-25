@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.countryCodeToUnicodeFlag
 import com.example.androiddevchallenge.puppies.model.PuppyBreed
 import dev.chrisbanes.accompanist.coil.CoilImage
 
@@ -60,6 +61,10 @@ fun PuppyDetails(puppy: PuppyBreed) {
             PuppySpec(title = "Temperament", puppy.temperament)
             PuppySpec(title = "Origin", puppy.origin)
             PuppySpec(title = "Average Lifespan", puppy.lifeSpan)
+            PuppySpec(
+                title = "Country of Origin",
+                value = puppy.countryCode?.countryCodeToUnicodeFlag()
+            )
         }
     }
 }
