@@ -56,7 +56,7 @@ fun PuppyListScreen(onPuppySelected: (PuppyBreed) -> Unit) {
                 }
             )
             is PuppyListViewModel.State.Done -> PuppyList(
-                state = stateValue,
+                puppies = stateValue.breeds,
                 onPuppySelected = onPuppySelected
             )
         }
@@ -88,8 +88,12 @@ fun LoadingScreen() {
     }
 }
 
+@Preview
 @Composable
-fun PuppyList(state: PuppyListViewModel.State.Done, onPuppySelected: (PuppyBreed) -> Unit) {
+fun PuppyList(
+    @PreviewParameter(PuppyBreedPreviewProvider::class) puppies: List<PuppyBreed>,
+    onPuppySelected: (PuppyBreed) -> Unit = {}
+) {
     val filterBy = remember { mutableStateOf("") }
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -125,7 +129,7 @@ fun PuppyList(state: PuppyListViewModel.State.Done, onPuppySelected: (PuppyBreed
             )
         }
 
-        items(state.breeds) { puppy ->
+        items(puppies) { puppy ->
             if (filterBy.value.isEmpty() || puppy.name.contains(filterBy.value, ignoreCase = true)) {
                 PuppyBreedListItem(puppy = puppy, onPuppySelected = onPuppySelected)
             }
