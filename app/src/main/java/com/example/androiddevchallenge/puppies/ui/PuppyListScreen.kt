@@ -23,6 +23,8 @@ import coil.transform.CircleCropTransformation
 import com.example.androiddevchallenge.puppies.PuppyListViewModel
 import com.example.androiddevchallenge.puppies.model.PuppyBreed
 import dev.chrisbanes.accompanist.coil.CoilImage
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 
 @Composable
 fun PuppyListScreen(onPuppySelected: (PuppyBreed) -> Unit) {
@@ -94,7 +96,8 @@ fun PuppyList(
     @PreviewParameter(PuppyBreedPreviewProvider::class) puppies: List<PuppyBreed>,
     onPuppySelected: (PuppyBreed) -> Unit = {}
 ) {
-    val filterBy = remember { mutableStateOf("") }
+    var filterBy by remember { mutableStateOf("") }
+
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(16.dp)
@@ -104,9 +107,9 @@ fun PuppyList(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 8.dp),
-                value = filterBy.value,
+                value = filterBy,
                 onValueChange = { value ->
-                    filterBy.value = value
+                    filterBy = value
                 },
                 label = { Text("Filter puppies…") },
                 singleLine = true,
@@ -117,8 +120,8 @@ fun PuppyList(
                     )
                 },
                 trailingIcon = {
-                    if (filterBy.value.isNotEmpty()) {
-                        IconButton(onClick = { filterBy.value = "" }) {
+                    if (filterBy.isNotEmpty()) {
+                        IconButton(onClick = { filterBy = "" }) {
                             Icon(
                                 imageVector = Icons.Default.Clear,
                                 contentDescription = "Clear search results"
@@ -130,7 +133,7 @@ fun PuppyList(
         }
 
         items(puppies) { puppy ->
-            if (filterBy.value.isEmpty() || puppy.name.contains(filterBy.value, ignoreCase = true)) {
+            if (filterBy.isEmpty() || puppy.name.contains(filterBy, ignoreCase = true)) {
                 PuppyBreedListItem(puppy = puppy, onPuppySelected = onPuppySelected)
             }
         }
