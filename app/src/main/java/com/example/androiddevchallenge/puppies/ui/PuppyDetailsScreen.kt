@@ -35,7 +35,7 @@ fun PuppyDetailsScreen(puppy: PuppyBreed, onBackPressed: () -> Unit = {}) {
                 IconButton(onClick = onBackPressed) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
-                        contentDescription = stringResource(R.string.details_cd_back)
+                        contentDescription = stringResource(R.string.all_cd_back)
                     )
                 }
             }

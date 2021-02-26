@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Pets
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
@@ -25,7 +26,10 @@ import com.example.androiddevchallenge.puppies.model.PuppyBreed
 import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
-fun PuppyListScreen(onPuppySelected: (PuppyBreed) -> Unit) {
+fun PuppyListScreen(
+    onPuppySelected: (PuppyBreed) -> Unit = {},
+    onAboutClicked: () -> Unit = {}
+) {
     val viewModel: PuppyListViewModel = viewModel()
     val state = viewModel.state.observeAsState(PuppyListViewModel.State.Loading)
 
@@ -43,6 +47,14 @@ fun PuppyListScreen(onPuppySelected: (PuppyBreed) -> Unit) {
                     Icon(
                         imageVector = Icons.Default.Pets,
                         contentDescription = stringResource(R.string.list_cd_paw_print)
+                    )
+                }
+            },
+            actions = {
+                IconButton(onClick = onAboutClicked) {
+                    Icon(
+                        imageVector = Icons.Default.Info,
+                        contentDescription = stringResource(R.string.list_cd_about)
                     )
                 }
             }
@@ -187,19 +199,6 @@ fun PuppyBreedListItem(
                     )
                 }
             }
-        }
-    }
-}
-
-@Composable
-fun CenteredBox(content: @Composable BoxScope.() -> Unit) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Box {
-            content()
         }
     }
 }
