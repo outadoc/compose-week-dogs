@@ -28,8 +28,10 @@
     <string name="details_prop_avgLifespan">Average Lifespan</string>
     <string name="details_prop_breedGroup">Breed Group</string>
     <string name="details_prop_country">Country of Origin</string>
+    <string name="details_prop_height">Height</string>
     <string name="details_prop_origin">Origin</string>
     <string name="details_prop_temperament">Temperament</string>
+    <string name="details_prop_weight">Weight</string>
 
     <string name="list_cd_about">About</string>
     <string name="list_cd_clear_results">Clear search results</string>

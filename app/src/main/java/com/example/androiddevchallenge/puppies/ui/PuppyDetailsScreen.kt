@@ -81,12 +81,20 @@ fun PuppySpecList(@PreviewParameter(PuppyBreedPreviewProvider::class) puppy: Pup
             value = puppy.origin
         )
         PuppySpec(
+            title = stringResource(R.string.details_prop_country),
+            value = puppy.countryCode?.countryCodeToUnicodeFlag()
+        )
+        PuppySpec(
             title = stringResource(R.string.details_prop_avgLifespan),
             value = puppy.lifeSpan
         )
         PuppySpec(
-            title = stringResource(R.string.details_prop_country),
-            value = puppy.countryCode?.countryCodeToUnicodeFlag()
+            title = stringResource(R.string.details_prop_height),
+            value = puppy.height?.metric?.let { "$it cm" }
+        )
+        PuppySpec(
+            title = stringResource(R.string.details_prop_weight),
+            value = puppy.weight?.metric?.let { "$it kg" }
         )
     }
 }
