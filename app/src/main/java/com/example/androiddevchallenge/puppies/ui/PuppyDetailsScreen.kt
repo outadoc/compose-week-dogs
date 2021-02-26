@@ -12,6 +12,8 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.countryCodeToUnicodeFlag
@@ -33,7 +35,7 @@ fun PuppyDetailsScreen(puppy: PuppyBreed, onBackPressed: () -> Unit = {}) {
                 IconButton(onClick = onBackPressed) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
-                        contentDescription = "Back to list"
+                        contentDescription = stringResource(R.string.details_cd_back)
                     )
                 }
             }
@@ -53,21 +55,39 @@ fun PuppyDetails(puppy: PuppyBreed) {
             contentDescription = puppy.name,
             fadeIn = true
         )
-        Column(modifier = Modifier.padding(16.dp)) {
-            Text(
-                text = puppy.name,
-                style = MaterialTheme.typography.h4,
-                modifier = Modifier.padding(bottom = 16.dp)
-            )
-            PuppySpec(title = stringResource(R.string.details_prop_breedGroup), puppy.breedGroup)
-            PuppySpec(title = stringResource(R.string.details_prop_temperament), puppy.temperament)
-            PuppySpec(title = stringResource(R.string.details_prop_origin), puppy.origin)
-            PuppySpec(title = stringResource(R.string.details_prop_avgLifespan), puppy.lifeSpan)
-            PuppySpec(
-                title = stringResource(R.string.details_prop_country),
-                value = puppy.countryCode?.countryCodeToUnicodeFlag()
-            )
-        }
+        PuppySpecList(puppy = puppy)
+    }
+}
+
+@Preview
+@Composable
+fun PuppySpecList(@PreviewParameter(PuppyBreedPreviewProvider::class) puppy: PuppyBreed) {
+    Column(modifier = Modifier.padding(16.dp)) {
+        Text(
+            text = puppy.name,
+            style = MaterialTheme.typography.h4,
+            modifier = Modifier.padding(bottom = 16.dp)
+        )
+        PuppySpec(
+            title = stringResource(R.string.details_prop_breedGroup),
+            value = puppy.breedGroup
+        )
+        PuppySpec(
+            title = stringResource(R.string.details_prop_temperament),
+            value = puppy.temperament
+        )
+        PuppySpec(
+            title = stringResource(R.string.details_prop_origin),
+            value = puppy.origin
+        )
+        PuppySpec(
+            title = stringResource(R.string.details_prop_avgLifespan),
+            value = puppy.lifeSpan
+        )
+        PuppySpec(
+            title = stringResource(R.string.details_prop_country),
+            value = puppy.countryCode?.countryCodeToUnicodeFlag()
+        )
     }
 }
 

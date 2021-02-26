@@ -30,6 +30,7 @@ class PuppyBreedPreviewProvider : PreviewParameterProvider<PuppyBreed> {
                     breedGroup = "Non-Sporting",
                     bredFor = "Hunting in the mountains of Japan, Alert Watchdog",
                     temperament = "Charming, Fearless, Keen, Alert, Confident, Faithful",
+                    countryCode = "JP",
                     image = PuppyImage(
                         id = "Zn3IjPX3f",
                         url = "https://cdn2.thedogapi.com/images/Zn3IjPX3f.jpg",
