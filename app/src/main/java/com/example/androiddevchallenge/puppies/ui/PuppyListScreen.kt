@@ -9,22 +9,20 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Pets
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.transform.CircleCropTransformation
+import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.puppies.PuppyListViewModel
 import com.example.androiddevchallenge.puppies.model.PuppyBreed
 import dev.chrisbanes.accompanist.coil.CoilImage
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 
 @Composable
 fun PuppyListScreen(onPuppySelected: (PuppyBreed) -> Unit) {
@@ -35,7 +33,7 @@ fun PuppyListScreen(onPuppySelected: (PuppyBreed) -> Unit) {
         TopAppBar(
             title = {
                 Text(
-                    text = "Puppy Adoption",
+                    text = stringResource(R.string.app_name),
                     color = MaterialTheme.colors.onPrimary
                 )
             },
@@ -44,7 +42,7 @@ fun PuppyListScreen(onPuppySelected: (PuppyBreed) -> Unit) {
                 IconButton(onClick = {}, enabled = false) {
                     Icon(
                         imageVector = Icons.Default.Pets,
-                        contentDescription = "Paw print icon"
+                        contentDescription = stringResource(R.string.list_cd_paw_print)
                     )
                 }
             }
@@ -77,7 +75,7 @@ fun ErrorScreen(errorMessage: String, onRetry: () -> Unit) {
                 modifier = Modifier.padding(bottom = 16.dp)
             )
             Button(onClick = onRetry) {
-                Text("Retry")
+                Text(stringResource(R.string.list_retry_action))
             }
         }
     }
@@ -111,12 +109,12 @@ fun PuppyList(
                 onValueChange = { value ->
                     filterBy = value
                 },
-                label = { Text("Filter puppies…") },
+                label = { Text(stringResource(R.string.list_filter_hint)) },
                 singleLine = true,
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Search,
-                        contentDescription = "Search"
+                        contentDescription = stringResource(R.string.list_cd_search)
                     )
                 },
                 trailingIcon = {
@@ -124,7 +122,7 @@ fun PuppyList(
                         IconButton(onClick = { filterBy = "" }) {
                             Icon(
                                 imageVector = Icons.Default.Clear,
-                                contentDescription = "Clear search results"
+                                contentDescription = stringResource(R.string.list_cd_clear_results)
                             )
                         }
                     }
@@ -181,7 +179,7 @@ fun PuppyBreedListItem(
                     style = MaterialTheme.typography.h6,
                     maxLines = 2
                 )
-                if (!puppy.breedGroup.isNullOrBlank())  {
+                if (!puppy.breedGroup.isNullOrBlank()) {
                     Text(
                         puppy.breedGroup,
                         style = MaterialTheme.typography.body2,

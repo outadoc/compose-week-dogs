@@ -9,5 +9,20 @@
       or implied. See the License for the specific language governing permissions and limitations under
       the License.
       -->
-    <string name="app_name">AndroidDevChallenge</string>
+
+    <string name="app_name">Puppy Adoption</string>
+
+    <string name="details_cd_back">Back to list</string>
+    <string name="details_prop_avgLifespan">Average Lifespan</string>
+    <string name="details_prop_breedGroup">Breed Group</string>
+    <string name="details_prop_country">Country of Origin</string>
+    <string name="details_prop_origin">Origin</string>
+    <string name="details_prop_temperament">Temperament</string>
+
+    <string name="list_cd_clear_results">Clear search results</string>
+    <string name="list_cd_paw_print">Paw print icon</string>
+    <string name="list_cd_search">Filter puppies…</string>
+    <string name="list_filter_hint">Filter puppies…</string>
+    <string name="list_retry_action">Retry</string>
+
 </resources>

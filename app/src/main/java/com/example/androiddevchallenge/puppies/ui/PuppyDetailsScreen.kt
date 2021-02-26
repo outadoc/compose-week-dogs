@@ -11,7 +11,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.countryCodeToUnicodeFlag
 import com.example.androiddevchallenge.puppies.model.PuppyBreed
 import dev.chrisbanes.accompanist.coil.CoilImage
@@ -57,12 +59,12 @@ fun PuppyDetails(puppy: PuppyBreed) {
                 style = MaterialTheme.typography.h4,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
-            PuppySpec(title = "Breed Group", puppy.breedGroup)
-            PuppySpec(title = "Temperament", puppy.temperament)
-            PuppySpec(title = "Origin", puppy.origin)
-            PuppySpec(title = "Average Lifespan", puppy.lifeSpan)
+            PuppySpec(title = stringResource(R.string.details_prop_breedGroup), puppy.breedGroup)
+            PuppySpec(title = stringResource(R.string.details_prop_temperament), puppy.temperament)
+            PuppySpec(title = stringResource(R.string.details_prop_origin), puppy.origin)
+            PuppySpec(title = stringResource(R.string.details_prop_avgLifespan), puppy.lifeSpan)
             PuppySpec(
-                title = "Country of Origin",
+                title = stringResource(R.string.details_prop_country),
                 value = puppy.countryCode?.countryCodeToUnicodeFlag()
             )
         }
